@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Author {
     @Id
-    @Column(name="book_id", nullable = false)
+    @Column(name="author_id", nullable = false)
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
