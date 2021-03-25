@@ -1,0 +1,24 @@
+graphql:
+    servlet:
+        mapping: /graphql
+myprops:
+    artifactId: '@project.artifactId@'
+    version: '@project.version@'
+    h2:
+        version: '@h2.version@'
+spring:
+    datasource:
+        driverClassName: org.h2.Driver
+        password: password
+        url: jdbc:h2:mem:testdb;TRACE_LEVEL_FILE=3
+        username: sa
+    h2:
+        console:
+            enabled: true
+            path: /h2-console
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        hibernate:
+            ddl-auto: update
+voyager:
+    mapping: /voyager
