@@ -14,16 +14,17 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.4</version>
+        <version>2.6.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <graphql.spring.starter.version>11.0.0</graphql.spring.starter.version>
+        <graphql.spring.starter.version>11.1.0</graphql.spring.starter.version>
         <h2.version>1.4.200</h2.version>
-        <jdk.release>16</jdk.release>
+        <jdk.release>17</jdk.release>
+        <lombok.version>1.18.20</lombok.version>
     </properties>
 
     <dependencies>
@@ -47,6 +48,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -61,19 +63,19 @@
             <version>${graphql.spring.starter.version}</version>
             <scope>runtime</scope>
         </dependency>
-        <dependency> <!-- to embed GraphiQL tool.  See http://localhost:8080/altair -->
+        <dependency> <!-- See http://localhost:8080/altair -->
             <groupId>com.graphql-java-kickstart</groupId>
             <artifactId>altair-spring-boot-starter</artifactId>
             <version>${graphql.spring.starter.version}</version>
             <scope>runtime</scope>
         </dependency>
-        <dependency> <!-- to embed GraphiQL tool.  See http://localhost:8080/playground -->
+        <dependency> <!-- See http://localhost:8080/playground -->
             <groupId>com.graphql-java-kickstart</groupId>
             <artifactId>playground-spring-boot-starter</artifactId>
             <version>${graphql.spring.starter.version}</version>
             <scope>runtime</scope>
         </dependency>
-        <dependency> <!-- to embed GraphiQL tool.  See http://localhost:8080/voyager -->
+        <dependency> <!-- See http://localhost:8080/voyager -->
             <groupId>com.graphql-java-kickstart</groupId>
             <artifactId>voyager-spring-boot-starter</artifactId>
             <version>${graphql.spring.starter.version}</version>
@@ -161,9 +163,17 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>15</source>
-                    <target>15</target>
+                    <source>${jdk.release}</source>
+                    <target>${jdk.release}</target>
                     <compilerArgs>--enable-preview</compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${jdk.release}</source>
+                    <target>${jdk.release}</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -185,9 +195,9 @@
             </build>
         </profile>
         <profile>
-            <id>java16</id>
+            <id>java${jdk.release}</id>
             <activation>
-                <jdk>16</jdk>
+                <jdk>${jdk.release}</jdk>
             </activation>
             <build>
                 <plugins>
@@ -196,7 +206,7 @@
                         <artifactId>maven-compiler-plugin</artifactId>
                         <configuration>
                             <release>${jdk.release}</release>
-                            <!-- Below is needed to make lombok work with JDK16.  See https://github.com/rzwitserloot/lombok/issues/2681 -->
+                            <!-- Below is needed to make lombok work with JDK${jdk.release}.  See https://github.com/rzwitserloot/lombok/issues/2681 -->
                             <fork>true</fork>
                             <compilerArgs>
                                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
