@@ -41,16 +41,14 @@ public class DemoGraphQlApplicationTests {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void contextLoads()
-    {
+    public void contextLoads() {
         assertNotNull(restTemplate);
         assertNotNull(jdbcTemplate);
         assertNotNull(dataSource);
     }
 
     @Test
-    public void h2Connection() throws SQLException
-    {
+    public void h2Connection() throws SQLException {
         try (Connection conn = dataSource.getConnection()) { //DriverManager.getConnection("jdbc:h2:~/test", "sa", "")) {
             assertNotNull(conn);
             Statement st = conn.createStatement();
@@ -62,18 +60,13 @@ public class DemoGraphQlApplicationTests {
     @Test
     public void h2Version() {
         String actualVersion = jdbcTemplate.queryForObject("SELECT `VALUE` FROM INFORMATION_SCHEMA.SETTINGS WHERE NAME = 'CREATE_BUILD'", String.class);
-        String expectedVersion = properties.getH2().getVersion();
+        String expectedVersion = properties.getH2()
+                                           .getVersion();
         assertThat(expectedVersion).endsWith("." + actualVersion); // the db must be created with the same h2 version in our build
     }
 
     @Test
     public void artifactProperty() throws IOException {
         assertThat(properties.getArtifactId()).isEqualTo("DemoGraphQL");
-//        final Properties props = new Properties();
-//        InputStream inStream = this.getClass()
-//                                   .getClassLoader()
-//                                   .getResourceAsStream("application.properties");
-//        props.load(inStream);
-//        assertThat(props.getProperty("myprops.artifactId")).isEqualTo("DemoGraphQL");
     }
 }
