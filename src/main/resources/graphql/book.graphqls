@@ -8,7 +8,7 @@ type Book {
 
 extend type Query {
     findAllBooks: [Book]!
-    countBooks: Long!
+    countBooks: Int!
 }
 
 extend type Mutation {

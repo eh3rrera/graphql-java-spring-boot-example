@@ -1,10 +1,10 @@
 package com.example.DemoGraphQL.resolver;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.example.DemoGraphQL.model.Author;
 import com.example.DemoGraphQL.model.Book;
 import com.example.DemoGraphQL.repository.AuthorRepository;
 import com.example.DemoGraphQL.repository.BookRepository;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 
 public class Query implements GraphQLQueryResolver {
     private BookRepository bookRepository;
@@ -19,13 +19,14 @@ public class Query implements GraphQLQueryResolver {
         return bookRepository.findAll();
     }
 
+    public long countBooks() {
+        return bookRepository.count();
+    }
+
     public Iterable<Author> findAllAuthors() {
         return authorRepository.findAll();
     }
 
-    public long countBooks() {
-        return bookRepository.count();
-    }
     public long countAuthors() {
         return authorRepository.count();
     }

@@ -38,5 +38,15 @@ mutation {
 }
 ```
 
+# Extras
+
+This build demos some UIs hosted at [graphql-java-kickstart](https://github.com/graphql-java-kickstart/graphql-spring-boot).
+  * Launch with `mvn spring-boot:run`
+  * Open a browser to view UIs at the following links:
+    * [GraphiQL](http://localhost:8080/graphiql)
+    * [Altair](http://localhost:8080/altair)
+    * [Playground](http://localhost:8080/playground)  
+    * [Voyager](http://localhost:8080/voyager)
+
 # License
 MIT
