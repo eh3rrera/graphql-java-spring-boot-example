@@ -1,12 +1,13 @@
-graphql:
-  servlet:
-    mapping: /graphql
 myprops:
   artifactId: '@project.artifactId@'
   version: '@project.version@'
   h2:
     version: '@h2.version@'
 spring:
+  graphql:
+    graphiql:
+      enabled: true
+      path: /graphiql
   datasource:
     url: jdbc:h2:mem:testdb;TRACE_LEVEL_FILE=3
     username: sa
